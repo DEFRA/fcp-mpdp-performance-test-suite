@@ -50,7 +50,7 @@ docker run --name fcp-mpdp-performance-test-suite --rm \
 fcp-mpdp-performance-test-suite
 ```
 
-### View and copy contents of S3 bucket to local directory
+### View and copy reports to local directory for inspection
 ```
 aws --endpoint-url=http://localhost:4566 s3 ls s3://fcp-mpdp-performance-test-suite-bucket/                                          
 aws --endpoint-url=http://localhost:4566 s3 cp s3://fcp-mpdp-performance-test-suite-bucket ./reports --recursive
