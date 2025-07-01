@@ -58,8 +58,6 @@ aws --endpoint-url=http://localhost:4566 s3 ls s3://fcp-mpdp-performance-test-su
 aws --endpoint-url=http://localhost:4566 s3 cp s3://fcp-mpdp-performance-test-suite-bucket ./reports --recursive
 ```
 
-
-
 ## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
