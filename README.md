@@ -19,27 +19,45 @@ The CDP Platform runs test suites in much the same way it runs any other service
 
 ### Build a new Docker image
 ```
-docker build . -t my-performance-tests
+docker build . -t fcp-mpdp-performance-test-suite
 ```
-### Create a Localstack bucket
+
+### Start a LocalStack instance locally
 ```
-aws --endpoint-url=localhost:4566 s3 mb s3://my-bucket
+docker run --name fcp-mpdp-performance-test-suite-localstack --rm -d -p 4566:4566 -p 4571:4571 localstack/localstack:3.0.2
+```
+
+### Check health of LocalStack instance (optional)
+You can run the following command to check LocalStack health and if S3 is up and running:
+```
+curl http://localhost:4564/_localstack/health
+```
+Output of the above should contain the following to confirm S3 is running: `"s3": "available"`.
+
+### Create a LocalStack bucket
+```
+aws --endpoint-url=http://localhost:4566 s3 mb s3://fcp-mpdp-performance-test-suite-bucket
 ```
 
 ### Run performance tests
 
 ```
-docker run \
+docker run --name fcp-mpdp-performance-test-suite --rm \
 -e S3_ENDPOINT='http://host.docker.internal:4566' \
--e RESULTS_OUTPUT_S3_PATH='s3://my-bucket' \
+-e RESULTS_OUTPUT_S3_PATH='s3://fcp-mpdp-performance-test-suite-bucket' \
 -e AWS_ACCESS_KEY_ID='test' \
 -e AWS_SECRET_ACCESS_KEY='test' \
 -e AWS_SECRET_KEY='test' \
 -e AWS_REGION='eu-west-2' \
-my-performance-tests
+fcp-mpdp-performance-test-suite
 ```
 
-docker run -e S3_ENDPOINT='http://host.docker.internal:4566' -e RESULTS_OUTPUT_S3_PATH='s3://cdp-infra-dev-test-results/cdp-portal-perf-tests/95a01432-8f47-40d2-8233-76514da2236a' -e AWS_ACCESS_KEY_ID='test' -e AWS_SECRET_ACCESS_KEY='test' -e AWS_SECRET_KEY='test' -e AWS_REGION='eu-west-2' -e ENVIRONMENT='perf-test' my-performance-tests
+### View and copy contents of S3 bucket to local directory
+```
+aws --endpoint-url=http://localhost:4566 s3 ls s3://fcp-mpdp-performance-test-suite-bucket/                                          
+aws --endpoint-url=http://localhost:4566 s3 cp s3://fcp-mpdp-performance-test-suite-bucket ./reports --recursive
+```
+
 
 
 ## Licence
