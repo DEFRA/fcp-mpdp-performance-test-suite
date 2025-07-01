@@ -15,7 +15,7 @@ A successful build results in a Docker container that is capable of running your
 The performance test suites are designed to be run from the CDP Portal.
 The CDP Platform runs test suites in much the same way it runs any other service, it takes a docker image and runs it as an ECS task, automatically provisioning infrastructure as required.
 
-## Local Performance Testing with LocalStack
+## Local Testing with LocalStack
 
 ### Build a new Docker image
 ```
@@ -34,9 +34,9 @@ Output of the above should contain the following to confirm S3 is running: `"s3"
 Ensure the port in the above command matches the port exposed for LocalStack by the service you wish to run performance tests against on your local machine.
 
 ### Create a LocalStack bucket
+```aws --endpoint-url=http://localhost:4566 s3 mb s3://fcp-mpdp-performance-test-suite-bucket
 ```
-aws --endpoint-url=http://localhost:4566 s3 mb s3://fcp-mpdp-performance-test-suite-bucket
-```
+
 
 ### Run performance tests
 ```
