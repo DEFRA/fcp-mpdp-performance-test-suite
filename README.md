@@ -15,7 +15,7 @@ A successful build results in a Docker container that is capable of running your
 The performance test suites are designed to be run from the CDP Portal.
 The CDP Platform runs test suites in much the same way it runs any other service, it takes a docker image and runs it as an ECS task, automatically provisioning infrastructure as required.
 
-## Local Testing with LocalStack
+## Local Performance Testing with LocalStack
 
 ### Build a new Docker image
 ```
