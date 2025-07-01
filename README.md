@@ -23,16 +23,15 @@ docker build . -t fcp-mpdp-performance-test-suite
 ```
 
 ### Start a LocalStack instance locally
-```
-docker run --name fcp-mpdp-performance-test-suite-localstack --rm -d -p 4566:4566 -p 4571:4571 localstack/localstack:3.0.2
-```
+You must be running another service locally that you wish to run performance tests against e.g. starting up the Docker container for `fcp-mpdp-frontend` will create a LocalStack service that can be used to create a dedicated S3 bucket where the reports will be stored.
 
 ### Check health of LocalStack instance (optional)
 You can run the following command to check LocalStack health and if S3 is up and running:
 ```
-curl http://localhost:4564/_localstack/health
+curl http://localhost:4566/_localstack/health
 ```
 Output of the above should contain the following to confirm S3 is running: `"s3": "available"`.
+Ensure the port in the above command matches the port exposed for LocalStack by the service you wish to run performance tests against on your local machine.
 
 ### Create a LocalStack bucket
 ```
@@ -40,7 +39,6 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://fcp-mpdp-performance-test-su
 ```
 
 ### Run performance tests
-
 ```
 docker run --name fcp-mpdp-performance-test-suite --rm \
 -e S3_ENDPOINT='http://host.docker.internal:4566' \
