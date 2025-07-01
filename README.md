@@ -17,44 +17,14 @@ The CDP Platform runs test suites in much the same way it runs any other service
 
 ## Local Testing with LocalStack
 
-### Build a new Docker image
+The `fcp-mpdp-performance-test-suite` can be ran locally via Docker compose.  
+You will first need to run the service you wish to test against locally.  
+Once this is complete, you can trigger a local test run:
 ```
-docker build . -t fcp-mpdp-performance-test-suite
-```
-
-### Start a LocalStack instance locally
-You must be running another service locally that you wish to run performance tests against e.g. starting up the Docker container for `fcp-mpdp-frontend` will create a LocalStack service that can be used to create a dedicated S3 bucket where the reports will be stored.
-
-### Check health of LocalStack instance (optional)
-You can run the following command to check LocalStack health and if S3 is up and running:
-```
-curl http://localhost:4566/_localstack/health
-```
-Output of the above should contain the following to confirm S3 is running: `"s3": "available"`.
-Ensure the port in the above command matches the port exposed for LocalStack by the service you wish to run performance tests against on your local machine.
-
-### Create a LocalStack bucket
-```aws --endpoint-url=http://localhost:4566 s3 mb s3://fcp-mpdp-performance-test-suite-bucket
+./test.sh
 ```
 
-
-### Run performance tests
-```
-docker run --name fcp-mpdp-performance-test-suite --rm \
--e S3_ENDPOINT='http://host.docker.internal:4566' \
--e RESULTS_OUTPUT_S3_PATH='s3://fcp-mpdp-performance-test-suite-bucket' \
--e AWS_ACCESS_KEY_ID='test' \
--e AWS_SECRET_ACCESS_KEY='test' \
--e AWS_SECRET_KEY='test' \
--e AWS_REGION='eu-west-2' \
-fcp-mpdp-performance-test-suite
-```
-
-### View and copy reports to local directory for inspection
-```
-aws --endpoint-url=http://localhost:4566 s3 ls s3://fcp-mpdp-performance-test-suite-bucket/                                          
-aws --endpoint-url=http://localhost:4566 s3 cp s3://fcp-mpdp-performance-test-suite-bucket ./reports --recursive
-```
+Test reports are saved locally and can be viewed in `reports` directory.
 
 ## Licence
 

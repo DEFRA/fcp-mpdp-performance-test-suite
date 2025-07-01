@@ -1,0 +1,18 @@
+services:
+  development:
+    build: .
+    volumes:
+      - ./reports:/app/reports
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_SECRET_KEY: test
+      AWS_REGION: eu-west-2
+      S3_ENDPOINT: 'http://localstack:4566'
+      RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-frontend-perf-tests'
+    networks:
+      - fcp-mpdp
+
+networks:
+  fcp-mpdp:
+    external: true
