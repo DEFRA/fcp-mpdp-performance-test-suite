@@ -2,7 +2,7 @@ services:
   development:
     build: .
     volumes:
-      - ./reports:/app/reports
+      - ./reports:/opt/perftest/reports
     environment:
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
@@ -10,6 +10,11 @@ services:
       AWS_REGION: eu-west-2
       S3_ENDPOINT: 'http://localstack:4566'
       RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-frontend-perf-tests'
+      ENVIRONMENT: local
+      DOMAIN: your-frontend
+      PORT: 3000
+      PROTOCOL: http
+      TEST_SCENARIO: test
     networks:
       - fcp-mpdp
 
