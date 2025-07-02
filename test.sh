@@ -2,7 +2,7 @@
 set -e
 
 LOCAL_REPORTS_DIR="./reports"
-BUCKET_NAME="fcp-mpdp-frontend-perf-tests"
+BUCKET_NAME="fcp-mpdp-performance-test-suite"
 
 echo "Starting fcp-mpdp-performance-test-suite Docker container..."
 docker compose up --build -d 
