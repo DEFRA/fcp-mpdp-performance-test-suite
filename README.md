@@ -17,30 +17,15 @@ The CDP Platform runs test suites in much the same way it runs any other service
 
 ## Local Testing with LocalStack
 
-### Build a new Docker image
+The `fcp-mpdp-performance-test-suite` can be ran locally via Docker compose.  
+You will first need to run the service you wish to test against locally.  
+Update the `DOMAIN` and `PORT` environment variables in the [Docker Compose](./compose.yaml) configuration to point to the service being tested.  
+Once this is complete, you can trigger a local test run:
 ```
-docker build . -t my-performance-tests
-```
-### Create a Localstack bucket
-```
-aws --endpoint-url=localhost:4566 s3 mb s3://my-bucket
-```
-
-### Run performance tests
-
-```
-docker run \
--e S3_ENDPOINT='http://host.docker.internal:4566' \
--e RESULTS_OUTPUT_S3_PATH='s3://my-bucket' \
--e AWS_ACCESS_KEY_ID='test' \
--e AWS_SECRET_ACCESS_KEY='test' \
--e AWS_SECRET_KEY='test' \
--e AWS_REGION='eu-west-2' \
-my-performance-tests
+./test.sh
 ```
 
-docker run -e S3_ENDPOINT='http://host.docker.internal:4566' -e RESULTS_OUTPUT_S3_PATH='s3://cdp-infra-dev-test-results/cdp-portal-perf-tests/95a01432-8f47-40d2-8233-76514da2236a' -e AWS_ACCESS_KEY_ID='test' -e AWS_SECRET_ACCESS_KEY='test' -e AWS_SECRET_KEY='test' -e AWS_REGION='eu-west-2' -e ENVIRONMENT='perf-test' my-performance-tests
-
+Test reports are saved locally and can be viewed in `reports` directory.
 
 ## Licence
 
