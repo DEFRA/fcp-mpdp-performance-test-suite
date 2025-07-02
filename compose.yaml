@@ -9,9 +9,9 @@ services:
       AWS_SECRET_KEY: test
       AWS_REGION: eu-west-2
       S3_ENDPOINT: 'http://localstack:4566'
-      RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-frontend-perf-tests'
+      RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-performance-test-suite'
       ENVIRONMENT: local
-      DOMAIN: your-frontend
+      DOMAIN: fcp-mpdp-frontend
       PORT: 3000
       PROTOCOL: http
     networks:
