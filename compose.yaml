@@ -14,7 +14,6 @@ services:
       DOMAIN: your-frontend
       PORT: 3000
       PROTOCOL: http
-      TEST_SCENARIO: test
     networks:
       - fcp-mpdp
 
