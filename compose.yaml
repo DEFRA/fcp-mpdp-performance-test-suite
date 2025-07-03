@@ -12,7 +12,7 @@ services:
       RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-performance-test-suite'
       ENVIRONMENT: local
       DOMAIN: fcp-mpdp-frontend
-      PORT: 3000
+      LOCAL_PORT: 3000
       PROTOCOL: http
     networks:
       - fcp-mpdp
