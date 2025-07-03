@@ -23,12 +23,7 @@ PORT=${PORT:-443}
 PROTOCOL=${PROTOCOL:-https}
 
 # Run the test suite
-jmeter -n -t ${SCENARIOFILE} -e -l "${REPORTFILE}" -o ${JM_REPORTS} -j ${LOGFILE} -f \
--Jenv="${ENVIRONMENT}" \
--Jdomain="${DOMAIN}" \
--Jport="${PORT}" \
--Jprotocol="${PROTOCOL}"
-
+jmeter -n -t ${SCENARIOFILE} -e -l "${REPORTFILE}" -o ${JM_REPORTS} -j ${LOGFILE} -f -Jenv="${ENVIRONMENT}"
 test_exit_code=$?
 
 # Publish the results into S3 so they can be displayed in the CDP Portal
