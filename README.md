@@ -19,7 +19,7 @@ The CDP Platform runs test suites in much the same way it runs any other service
 
 The `fcp-mpdp-performance-test-suite` can be ran locally via Docker compose.  
 You will first need to run the service you wish to test against locally.  
-Update the `DOMAIN` and `PORT` environment variables in the [Docker Compose](./compose.yaml) configuration to point to the service being tested.  
+Update the `DOMAIN` and `LOCAL_PORT` environment variables in the [Docker Compose](./compose.yaml) configuration to point to the service being tested.  
 Once this is complete, you can trigger a local test run:
 ```
 ./test.sh
