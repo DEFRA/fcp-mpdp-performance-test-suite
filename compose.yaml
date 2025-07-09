@@ -8,7 +8,7 @@ services:
       AWS_SECRET_ACCESS_KEY: test
       AWS_SECRET_KEY: test
       AWS_REGION: eu-west-2
-      S3_ENDPOINT: 'http://localstack:4566'
+      S3_ENDPOINT: 'http://fcp-mpdp-frontend-localstack:4566'
       RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-performance-test-suite'
       ENVIRONMENT: local
       DOMAIN: fcp-mpdp-frontend
