@@ -1,5 +1,6 @@
 services:
   development:
+    container_name: fcp-mpdp-performance-test-suite-development
     build: .
     volumes:
       - ./reports:/opt/perftest/reports
