@@ -12,7 +12,7 @@ services:
       S3_ENDPOINT: 'http://fcp-mpdp-frontend-localstack:4566'
       RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-performance-test-suite'
       ENVIRONMENT: local
-      DOMAIN: fcp-mpdp-frontend
+      DOMAIN: development
       LOCAL_PORT: 3000
       PROTOCOL: http
     networks:
