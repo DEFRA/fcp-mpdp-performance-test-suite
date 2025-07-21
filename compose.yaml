@@ -2,6 +2,11 @@ services:
   development:
     container_name: fcp-mpdp-performance-test-suite-development
     build: .
+    links:
+      - 'localstack:localstack'
+    depends_on:
+      localstack:
+        condition: service_healthy
     volumes:
       - ./reports:/opt/perftest/reports
     environment:
@@ -22,11 +27,11 @@ services:
     image: localstack/localstack:3.0.2
     container_name: fcp-mpdp-performance-test-suite-localstack
     ports:
-      - '4566:4566' # LocalStack Gateway
-      - '4510-4559:4510-4559' # external services port range
+      - '4566:4566' 
+      - '4510-4559:4510-4559'
     environment:
       DEBUG: ${DEBUG:-1}
-      LS_LOG: WARN # Localstack DEBUG Level
+      LS_LOG: WARN
       SERVICES: s3,sqs,sns,firehose
       LOCALSTACK_HOST: 127.0.0.1
       AWS_REGION: eu-west-2
