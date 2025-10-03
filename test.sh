@@ -3,12 +3,17 @@ set -e
 
 LOCAL_REPORTS_DIR="./reports"
 
-echo "Starting fcp-mpdp-performance-test-suite Docker containers..."
+# Clean up any existing reports using Docker (handles root-owned files)
+if [ -d "$LOCAL_REPORTS_DIR" ]; then
+  echo "Cleaning existing reports directory..."
+  docker run --rm -v "$(pwd)/reports:/reports" alpine sh -c "rm -rf /reports/*" 2>/dev/null || true
+fi
+
+mkdir -p -m 777 "$LOCAL_REPORTS_DIR"
+
+docker compose down -v
 docker compose up --build -d 
 
-echo "Waiting for containers to be ready..."
-
-# Wait for LocalStack to be healthy and development container to complete
 echo "Waiting for LocalStack to be ready..."
 timeout=60
 counter=0
