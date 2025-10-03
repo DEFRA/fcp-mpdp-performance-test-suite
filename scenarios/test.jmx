@@ -98,11 +98,6 @@
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <!-- Add delay to simulate download completion -->
-          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Download Wait Timer" enabled="true">
-            <stringProp name="ConstantTimer.delay">2000</stringProp>
-          </ConstantTimer>
-          <hashTree/>
         </hashTree>
 
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Download all payment data file">
@@ -129,11 +124,6 @@
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
-          <hashTree/>
-          <!-- Add delay to simulate large file download completion -->
-          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Large Download Wait Timer" enabled="true">
-            <stringProp name="ConstantTimer.delay">5000</stringProp>
-          </ConstantTimer>
           <hashTree/>
         </hashTree>
 
