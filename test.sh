@@ -7,9 +7,14 @@ BUCKET_NAME="fcp-mpdp-performance-test-suite"
 echo "Starting fcp-mpdp-performance-test-suite Docker container..."
 docker compose up --build -d 
 
-echo "Creating S3 bucket: $BUCKET_NAME..."
-docker compose exec development aws --endpoint-url=http://fcp-mpdp-performance-test-suite-localstack:4566 s3 mb "s3://$BUCKET_NAME" 
-echo "S3 bucket: $BUCKET_NAME successfully created"
+echo "Checking if S3 bucket exists: $BUCKET_NAME..."
+if docker compose exec development aws s3 ls "s3://$BUCKET_NAME" --endpoint-url=http://fcp-mpdp-performance-test-suite-localstack:4566 > /dev/null 2>&1; then
+  echo "S3 bucket $BUCKET_NAME already exists, skipping creation"
+else
+  echo "Creating S3 bucket: $BUCKET_NAME..."
+  docker compose exec development aws --endpoint-url=http://fcp-mpdp-performance-test-suite-localstack:4566 s3 mb "s3://$BUCKET_NAME" 
+  echo "S3 bucket: $BUCKET_NAME successfully created"
+fi
 
 echo "Waiting for S3 bucket $BUCKET_NAME to become accessible..."
 for i in {1..10}; do

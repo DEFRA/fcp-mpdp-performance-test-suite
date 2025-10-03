@@ -17,7 +17,7 @@ services:
       S3_ENDPOINT: 'http://fcp-mpdp-performance-test-suite-localstack:4566'
       RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-performance-test-suite'
       ENVIRONMENT: local
-      DOMAIN: development
+      DOMAIN: host.docker.internal
       LOCAL_PORT: 3000
       PROTOCOL: http
     networks:
