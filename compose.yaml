@@ -17,7 +17,7 @@ services:
       S3_ENDPOINT: 'http://fcp-mpdp-performance-test-suite-localstack:4566'
       RESULTS_OUTPUT_S3_PATH: 's3://fcp-mpdp-performance-test-suite'
       ENVIRONMENT: local
-      DOMAIN: development
+      DOMAIN: host.docker.internal
       LOCAL_PORT: 3000
       PROTOCOL: http
     networks:
@@ -26,9 +26,6 @@ services:
   localstack:
     image: localstack/localstack:3.0.2
     container_name: fcp-mpdp-performance-test-suite-localstack
-    ports:
-      - '4566:4566' 
-      - '4510-4559:4510-4559'
     environment:
       DEBUG: ${DEBUG:-1}
       LS_LOG: WARN
@@ -40,7 +37,7 @@ services:
       AWS_SECRET_ACCESS_KEY: test
     volumes:
       - '${TMPDIR:-/tmp}/localstack:/var/lib/localstack'
-      - ./compose/start-localstack.sh:/etc/localstack/init/ready.d/start-localstack.sh
+      - ./localstack.sh:/etc/localstack/init/ready.d/localstack.sh
     healthcheck:
       test: ['CMD', 'curl', 'localhost:4566']
       interval: 5s
