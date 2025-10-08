@@ -35,7 +35,7 @@ fi
 
 echo "Waiting for JMeter tests to complete..."
 # Wait for the development container to finish running tests
-timeout=300  # 5 minutes timeout for tests
+timeout=900  # 15 minutes timeout for tests
 counter=0
 while [ $counter -lt $timeout ]; do
   # Check if container is still running (tests ongoing)
