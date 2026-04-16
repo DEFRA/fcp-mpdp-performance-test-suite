@@ -12,26 +12,7 @@ fi
 mkdir -p -m 777 "$LOCAL_REPORTS_DIR"
 
 docker compose down -v
-docker compose up --build -d 
-
-echo "Waiting for LocalStack to be ready..."
-timeout=60
-counter=0
-while [ $counter -lt $timeout ]; do
-  if docker compose ps localstack --format "table {{.Status}}" | grep -q "healthy"; then
-    echo "✅ LocalStack is healthy and S3 buckets are ready"
-    break
-  fi
-  echo "⏳ Waiting for LocalStack to become healthy... ($counter/$timeout)"
-  sleep 2
-  counter=$((counter + 2))
-done
-
-if [ $counter -ge $timeout ]; then
-  echo "❌ LocalStack failed to become healthy within $timeout seconds"
-  docker compose logs localstack
-  exit 1
-fi
+docker compose up --build -d
 
 echo "Waiting for JMeter tests to complete..."
 # Wait for the development container to finish running tests
