@@ -101,34 +101,7 @@
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
-        </hashTree>
-
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Download all payment data file">
-          <stringProp name="TestPlan.comments">Download all scheme payment data</stringProp>
-          <stringProp name="HTTPSampler.domain">${__P(domain, fcp-mpdp-frontend.${__P(env)}.cdp-int.defra.cloud)}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${__P(protocol, https)}</stringProp>
-          <stringProp name="HTTPSampler.port">${__P(port, 3000)}</stringProp>
-          <stringProp name="HTTPSampler.path">/all-scheme-payment-data/file</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Download all payment data file assertion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message">Download all payment data file should return 200</stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">2</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-        </hashTree>
+        </hashTree>        
 
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search for payment">
           <stringProp name="TestPlan.comments">Search for 'Feeney' in the search functionality</stringProp>
